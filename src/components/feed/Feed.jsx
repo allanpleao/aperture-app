@@ -40,15 +40,13 @@ const Feed = () => {
 
   return (
     <div className={styles.imagesContainer}>
-      {images.length > 0 ? (
+      {images &&
         images.map((img) => (
           <div key={img.id}>
             <img className={styles.image} src={img.url} alt="" />
           </div>
         ))
-      ) : (
-        <p>Não há imagens</p>
-      )}
+       }
     </div>
   );
 };

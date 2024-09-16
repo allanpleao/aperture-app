@@ -1,8 +1,12 @@
 import React from 'react'
+import { Outlet } from 'react-router-dom'
+import styles from './Login.module.css'
 
 const Login = () => {
   return (
-    <div>Login</div>
+    <section className={styles.login}>
+      <Outlet />
+    </section>
   )
 }
 
