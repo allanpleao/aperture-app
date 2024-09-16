@@ -1,47 +1,34 @@
-import React, { useState, useEffect } from 'react';
-import { collection, getDocs } from 'firebase/firestore';
-import { db } from '../../../firebaseConfig';  // Certifique-se de que o caminho está correto
+import { useEffect, useState } from "react"
+import { db } from "../../../firebaseConfig"
+import { onSnapshot, collection } from "firebase/firestore"
+import styles from './Feed.module.css'
 
-function Feed() {
-  const [images, setImages] = useState([]);
-  const [loading, setLoading] = useState(true);
+const Feed = () => {
+  const [images, setImages] = useState([])
 
   useEffect(() => {
-    const fetchImages = async () => {
-      try {
-        const querySnapshot = await getDocs(collection(db, 'imagens'));
-        const imageList = querySnapshot.docs.map(doc => ({
+    const unsubscribe = onSnapshot(collection(db, 'images'), (snapShot) => {
+      const imgs = snapShot.docs.map((doc) => {
+        return {
           id: doc.id,
-          url: doc.data().url
-        }));
-        console.log("Lista de imagens:", imageList);  // Adicionado para depuração
-        setImages(imageList);
-        setLoading(false);
-      } catch (error) {
-        console.error("Erro ao buscar imagens:", error);
-        setLoading(false);
-      }
-    };
-
-    fetchImages();
-  }, []);
-
-  if (loading) {
-    return <div>Carregando...</div>;
-  }
+          ...doc.data()
+        }
+      })
+      setImages(imgs)
+      console.log(imgs)
+    })
+    return () => unsubscribe()
+  },[])
 
   return (
-    <div className="feed">
-      <h2>Feed de Imagens</h2>
-      <div className="image-grid">
-        {images.map((image) => (
-          <div key={image.id} className="image-item">
-            <img src={image.url} alt="Imagem do feed" />
-          </div>
-        ))}
-      </div>
+    <div className={styles.imagesContainer}>
+      {images&& images.map((img) => (
+        <div  key={img.id}>
+          <img className={styles.image} src={img.url} alt="" />
+        </div>
+      ))}
     </div>
-  );
+  )
 }
 
-export default Feed;
+export default Feed
