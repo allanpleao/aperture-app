@@ -1,0 +1,12 @@
+.formInput {
+    label {
+        
+        font-size: 1.2rem;
+    }
+
+    input {
+        margin: 0.25rem 0;
+        width: 100%;
+        padding: 0.5rem;
+    }
+}

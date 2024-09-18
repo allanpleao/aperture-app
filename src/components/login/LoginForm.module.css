@@ -1,3 +1,25 @@
 .loginForm {
-    margin: 4rem;
+    margin: 2rem;
+}
+
+.loginTitle {
+    font-size: 2.2rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    position: relative;
+    margin-bottom: 2rem;
+
+}
+
+.loginTitle::before {
+    content: '';
+    background-color: red;
+    width: 45px;
+    height: 5px;
+    left: 1;
+    position: absolute;
+    z-index: -1;
+    top: 0px;
+    background-color: #2178d4;
+    border-radius: 2px;
 }

@@ -9,6 +9,8 @@
     content: '';
     background: url('../../assets/login.jpg') no-repeat center ;
     background-size: cover;
+    border-radius: 0.25rem;
+    margin-top: 1rem;
 
 }
 
@@ -16,3 +18,4 @@
     max-width: 30rem;
     padding: 1rem;
 }
+

@@ -6,7 +6,7 @@ import Button from '../form/Button'
 const LoginForm = () => {
   return (
     <form className={styles.loginForm}>
-      <h2>Login</h2>
+      <h2 className={styles.loginTitle}>Login</h2>
       <Input label="Email" />
       <Input label="Senha" />
       <Button>Entrar</Button>
