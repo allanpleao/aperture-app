@@ -1,4 +1,4 @@
-.formButton {
+.button {
     button {
         padding: .8rem 2rem;
         width: 100%;
@@ -6,5 +6,11 @@
         background-color: #2178d4;
         border: none;
         border-radius: 4px;
+        font-size: 1.1rem;
     }
+}
+
+.small {
+    width: fit-content;
+    
 }

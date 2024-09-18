@@ -4,6 +4,7 @@ import Home from "../components/Home";
 import Login from "../components/login/Login";
 import LoginForm from "../components/login/LoginForm";
 import CreateAccount from "../components/login/CreateAccount";
+import LostPassword from "../components/login/LostPassword";
 
 export const router = createBrowserRouter([
   {
@@ -16,7 +17,8 @@ export const router = createBrowserRouter([
         element: <Login />,
         children: [
             { index: true, element: <LoginForm /> },
-            { path: 'create', element: <CreateAccount />}
+            { path: 'create', element: <CreateAccount />},
+            { path: 'lost', element: <LostPassword />}
         ],
       },
     ],

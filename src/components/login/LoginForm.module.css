@@ -1,6 +1,5 @@
-.loginForm {
+.loginContainer {
     margin: 2rem;
-
 }
 
 .loginTitle {
@@ -23,4 +22,18 @@
     top: 0px;
     background-color: #2178d4;
     border-radius: 2px;
+}
+
+.loginLost {
+    display: block;
+    margin-top: 2rem;
+}
+
+.loginCreate {
+    font-size: 2rem;
+}
+
+.haveAccount {
+    margin-top: 2rem;
+    padding: 0px;
 }
