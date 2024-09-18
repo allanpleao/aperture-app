@@ -1,8 +1,12 @@
 import React from 'react'
+import styles from './LoginForm.module.css'
 
 const LoginForm = () => {
   return (
-    <div>LoginForm</div>
+    <section className='container'>
+      <h2>Login</h2>
+      <input type="text" />
+    </section>
   )
 }
 
