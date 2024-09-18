@@ -1,13 +1,16 @@
-.button {
-    button {
+ .button {
         padding: .8rem 2rem;
         width: 100%;
-        margin-top: 1.25rem;
         background-color: #2178d4;
         border: none;
         border-radius: 4px;
         font-size: 1.1rem;
+        cursor: pointer;
+        margin-top: 1.25rem;
     }
+
+.button:hover {
+    background-color: #2178d4c1;
 }
 
 .small {
