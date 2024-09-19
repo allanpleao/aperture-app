@@ -1,17 +1,17 @@
-.loginContainer {
+.createContainer {
     margin: 2rem;
 }
 
-.loginTitle {
+.createTitle {
     font-size: 2.2rem;
     font-weight: bold;
     letter-spacing: 1px;
     position: relative;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 
 }
 
-.loginTitle::before {
+.createTitle::before {
     content: '';
     width: 45px;
     height: 5px;
@@ -21,18 +21,4 @@
     top: 0px;
     background-color: #2178d4;
     border-radius: 2px;
-}
-
-.loginLost {
-    display: block;
-    margin-top: 2rem;
-}
-
-.loginCreate {
-    font-size: 2rem;
-}
-
-.haveAccount {
-    margin-top: 2rem;
-    padding: 0px;
 }

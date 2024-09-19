@@ -3,8 +3,10 @@ import styles from './LoginForm.module.css'
 import Input from '../form/Input'
 import Button from '../form/Button'
 import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const LoginForm = () => {
+  const navigate = useNavigate()
   return (
     <section className={styles.loginContainer}>
     <form className={styles.loginForm}>
@@ -15,7 +17,7 @@ const LoginForm = () => {
     </form>
     <Link className={styles.loginLost} to={'/login/lost'}>perdeu a senha?</Link>
     <p className={styles.haveAccount}>Não tem uma conta?</p>
-    <Button size='small' >Cadastre-se</Button>
+    <Button size='small' onClick={() => navigate('/login/create')} >Cadastre-se</Button>
     </section>
 
   )
