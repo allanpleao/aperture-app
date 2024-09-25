@@ -7,75 +7,42 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { setUser } from "../../redux/store/slices/authSlice";
 import { useDispatch } from "react-redux";
 import Error from "../helper/Error";
-import { useForm } from "react-hook-form";
+import useForm from "../../hooks/useForm";
 
 const CreateAccount = () => {
+  const email = useForm()
+  const password = useForm()
+  const dispatch = useDispatch()
+  const [loginError, setLoginError] = useState(null)
 
-
-  const dispatch = useDispatch();
-  const {
-    register,
-    handleSubmit,
-    trigger,
-    formState: { errors },
-  } = useForm({
-    mode: 'onBlur'
-  });
-
-  const validateEmail = (email) => {
-    const emailRegex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
-    if (!email) {
-      return 'email é obrigatório'
-    }
-     if (!emailRegex.test(email)) {
-      return "Digite um email válido";
-    }
-    return true;
-  }
-  const validatePassword = (value) => {
-    if(!password) {
-      return 'senha é obrigatória'
-    }
-  }
 
   const handleCreateAccount = async (event) => {
     event.preventDefault();
     try {
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        password,
-        email
-      );
-      console.log("Usuário criado", userCredential.user);
-      dispatch(setUser(userCredential.user));
+      if (!email.validate() || !password.validate()) {
+        console.log( 'dados inválidos')
+        setLoginError('dados inválidos')
+        return;
+      }
+      const userCredential = await createUserWithEmailAndPassword(auth, email.inputValue, password.inputValue);
+      const user = userCredential.user;
+      dispatch(setUser(user))
+      console.log('conta criada com sucesso')
+      
     } catch (error) {
-      console.error("Erro ao criar usuário", error);
-      setError(error.message);
+      console.error('erro ao criar conta', error)
+      setLoginError('erro ao criar conta')
     }
   };
 
   return (
-    <form onSubmit={handleSubmit(handleCreateAccount)} className={styles.createContainer}>
+    <form onSubmit={handleCreateAccount} className={styles.createContainer}>
       <h2 className={styles.createTitle}>Criar conta</h2>
-      <Input
-        {...register('email', {
-          validate: validateEmail
-        })}
-        onBlur={() => trigger('email')}
-        label="Email"
-        error={errors.email?.message}
-      />
-      
-      <Input
-      {...register('password', {
-        validate: validatePassword
-      })}
-        onBlur={() => trigger('password')}
-        label="Senha"
-        error={errors.password?.message}
-      />
+      <Input label="Email" value={email.inputValue} onChange={email.handleChange} onBlur={email.handleBlur} error={email.error} />
+
+      <Input value={password.inputValue} onChange={password.handleChange} label="Senha" onBlur={password.handleBlur} error={password.error} />
       <Button>Criar conta</Button>
- 
+      {loginError && <Error error={loginError} />}
     </form>
   );
 };
