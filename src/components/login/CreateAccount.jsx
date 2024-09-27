@@ -38,9 +38,9 @@ const CreateAccount = () => {
   return (
     <form onSubmit={handleCreateAccount} className={styles.createContainer}>
       <h2 className={styles.createTitle}>Criar conta</h2>
-      <Input label="Email" value={email.inputValue} onChange={email.handleChange} onBlur={email.handleBlur} error={email.error} />
+      <Input name="email" label="Email" value={email.inputValue} onChange={email.handleChange} onBlur={email.handleBlur} error={email.error} />
 
-      <Input value={password.inputValue} onChange={password.handleChange} label="Senha" onBlur={password.handleBlur} error={password.error} />
+      <Input name="senha" value={password.inputValue} onChange={password.handleChange} label="Senha" onBlur={password.handleBlur} error={password.error} />
       <Button>Criar conta</Button>
       {loginError && <Error error={loginError} />}
     </form>

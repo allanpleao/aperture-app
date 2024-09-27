@@ -15,11 +15,11 @@ export const useForm = () => {
     },
   };
 
-  const validate = (value) => {
+  const validate = (name, value) => {
     setError(null);
-    const key = validationRules[id];
+    const key = validationRules[name];
     if (!value) {
-      setError(`o campo de ${id} é obrigatório`);
+      setError(`O campo de ${name} é obrigatório!`);
       return false;
     }
     if (key && !key.pattern.test(value)) {
@@ -31,12 +31,12 @@ export const useForm = () => {
     }
   };
 
-  const handleChange = ({ target: { value } }) => {
+  const handleChange = ({ target: {name, value } }) => {
     setInputValue(value);
-    if (error) validate(value);
+    if (error) validate(name, value);
   };
-  const handleBlur = ({ target: { value } }) => {
-    validate(value);
+  const handleBlur = ({ target: { name, value } }) => {
+    validate(name, value);
   };
 
   return {
