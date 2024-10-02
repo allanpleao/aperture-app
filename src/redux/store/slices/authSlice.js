@@ -1,5 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const extractUserData = (user) => {
+    if (!user) return null;
+    return {
+        uid: user.id,
+        email: user.email,
+        displayName: user.displayName,
+        photoURL: user.photoURL
+    }
+}
+
 const authSlice = createSlice({
     name: 'auth',
     initialState: {
@@ -9,7 +19,7 @@ const authSlice = createSlice({
     },
     reducers: {
     setUser: (state, action) => {
-        state.user = action.payload;
+        state.user = extractUserData(action.payload);
         state.loading = false;
         state.error = null;
     },

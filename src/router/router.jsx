@@ -5,6 +5,7 @@ import Login from "../components/login/Login";
 import LoginForm from "../components/login/LoginForm";
 import CreateAccount from "../components/login/CreateAccount";
 import LostPassword from "../components/login/LostPassword";
+import User from "../components/user/User";
 
 export const router = createBrowserRouter([
   {
@@ -23,4 +24,5 @@ export const router = createBrowserRouter([
       },
     ],
   },
+  { path: 'user', element: <User />}
 ]);
