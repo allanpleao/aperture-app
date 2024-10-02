@@ -13,6 +13,10 @@ export const useForm = (type) => {
       pattern: /[A-Za-z\d@$!%*?&]{6,}/,
       message: "A senha precisar ter pelo menos 6 dígitos",
     },
+    username: {
+      pattern: /^[a-zA-Z0-9_-]{3,20}$/,
+      message: 'nome de usuário inválido'
+    }
   };
 
   const validate = (value) => {

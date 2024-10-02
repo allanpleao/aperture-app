@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const extractUserData = (user) => {
+export const extractUserData = (user) => {
     if (!user) return null;
     return {
         uid: user.id,

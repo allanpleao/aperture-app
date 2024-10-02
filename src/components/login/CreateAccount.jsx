@@ -3,8 +3,8 @@ import Input from "../form/Input";
 import Button from "../form/Button";
 import styles from "./CreateAccount.module.css";
 import { auth } from "../../../firebaseConfig";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { setUser } from "../../redux/store/slices/authSlice";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { extractUserData, setUser } from "../../redux/store/slices/authSlice";
 import { useDispatch } from "react-redux";
 import Error from "../helper/Error";
 import useForm from "../../hooks/useForm";
@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 const CreateAccount = () => {
   const email = useForm('email')
   const password = useForm('senha')
+  const username = useForm('username')
   const dispatch = useDispatch()
   const [loginError, setLoginError] = useState(null)
   const navigate = useNavigate();
@@ -27,7 +28,8 @@ const CreateAccount = () => {
       }
       const userCredential = await createUserWithEmailAndPassword(auth, email.inputValue, password.inputValue);
       const user = userCredential.user;
-      dispatch(setUser(user))
+      await updateProfile(user, { displayName: username.inputValue})
+      dispatch(setUser(extractUserData(user)))
       console.log('conta criada com sucesso')
       navigate('/user')
       
@@ -43,6 +45,8 @@ const CreateAccount = () => {
       <Input name="email" label="Email" value={email.inputValue} onChange={email.handleChange} onBlur={email.handleBlur} error={email.error} />
 
       <Input type="password" name="senha" value={password.inputValue} onChange={password.handleChange} label="Senha" onBlur={password.handleBlur} error={password.error} />
+
+      <Input name="username" label="Nome de usuário" value={username.inputValue} onChange={username.handleChange} onBlur={username.handleBlur} error={username.error} />
       <Button>Criar conta</Button>
       {loginError && <Error error={loginError} />}
     </form>
