@@ -29,7 +29,7 @@ const CreateAccount = () => {
       const userCredential = await createUserWithEmailAndPassword(auth, email.inputValue, password.inputValue);
       const user = userCredential.user;
       await updateProfile(user, { displayName: username.inputValue})
-      dispatch(setUser(extractUserData(user)))
+      dispatch(setUser((user)))
       console.log('conta criada com sucesso')
       navigate('/user')
       

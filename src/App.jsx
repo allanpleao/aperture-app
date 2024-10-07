@@ -12,17 +12,16 @@ function App() {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    setLoading(true);
+    dispatch(setLoading(true));
 
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         console.log("Usuário autenticado:", user);
-        const userData = extractUserData(user)
-        dispatch(setUser((userData)))
+        dispatch(setUser((user)))
       } else {
         console.log("Nenhum usuário autenticado");
         dispatch(clearUser())
-        setLoading(false)
+        dispatch(setLoading(false))
       }
     })
     return () => unsubscribe();

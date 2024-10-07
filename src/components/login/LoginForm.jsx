@@ -32,7 +32,7 @@ const LoginForm = () => {
       const userCredential = await signInWithEmailAndPassword(auth, email.inputValue, password.inputValue)
       const user = userCredential.user;
 
-      dispatch(setUser(extractUserData(user)))
+      dispatch(setUser((user)))
 
       navigate('/user')
     } catch (error) {
