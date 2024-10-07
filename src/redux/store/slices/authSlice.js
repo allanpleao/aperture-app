@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const extractUserData = (user) => {
     if (!user) return null;
     return {
-        uid: user.id,
+        uid: user.uid,
         email: user.email,
         displayName: user.displayName,
         photoURL: user.photoURL
