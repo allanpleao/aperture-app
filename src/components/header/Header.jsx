@@ -7,6 +7,7 @@ import { signOut } from "firebase/auth";
 import { auth } from "../../../firebaseConfig";
 import { useDispatch } from "react-redux";
 import { clearUser } from "../../redux/store/slices/authSlice";
+import logout from '../../assets/logout'
 
 const Header = () => {
   const { user } = useSelector((state) => state.auth);
@@ -36,12 +37,15 @@ const Header = () => {
       <nav className={styles.nav}>
         {user ? (
           <>
-            <Link onClick={handleLogout}>logout</Link>
+            <Link onClick={handleLogout}>sair <logout /></Link>
             <Link to={"/user"}>Minha conta</Link>
 
           </>
         ) : (
-          <Link to={"/login"}>Login</Link>
+          <>
+          <Link to={"/login"}>Entrar</Link>
+          <Link to={"/login/create"}>criar conta</Link>
+          </>
         )}
 
       </nav>
