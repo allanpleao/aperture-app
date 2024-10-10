@@ -8,6 +8,7 @@ import { auth } from "../../../firebaseConfig";
 import { useDispatch } from "react-redux";
 import { clearUser } from "../../redux/store/slices/authSlice";
 import Logout from '../../assets/logout.svg?react'
+import Profile from '../../assets/profile.svg?react'
 
 const Header = () => {
   const { user } = useSelector((state) => state.auth);
@@ -37,8 +38,8 @@ const Header = () => {
       <nav className={styles.nav}>
         {user ? (
           <>
-            <Link onClick={handleLogout}>sair <Logout /></Link>
-            <Link to={"/user"}>Minha conta</Link>
+            <Link onClick={handleLogout}>sair <Logout className={styles.logoutIcon} /></Link>
+            <Link to={"/user"}>Minha conta <Profile className={styles.profile} /></Link>
 
           </>
         ) : (

@@ -46,3 +46,16 @@
   font-size: 1.6rem;
   top: 0.8rem;
 }
+
+.profile {
+  position: relative;
+  fill: #F4F4F4;
+  left: 2px
+}
+
+.logoutIcon {
+  position: relative;
+  top: 4px;
+  fill: #F4F4F4;
+  left: 2px
+}
