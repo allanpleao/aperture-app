@@ -17,9 +17,9 @@ const Header = () => {
     try {
       await signOut(auth)
       dispatch(clearUser())
-      navigate('/')
+      navigate('/login')
     } catch (error) {
-      console.error('Erro ai fazer logout:', error)
+      console.error('Erro ao fazer logout:', error)
     }
   }
 
@@ -37,7 +37,7 @@ const Header = () => {
         {user ? (
           <>
             <Link onClick={handleLogout}>logout</Link>
-            <Link to={"/user"}>{user.displayName}</Link>
+            <Link to={"/user"}>Minha conta</Link>
 
           </>
         ) : (
